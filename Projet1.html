@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang=fr>
+<head>
+   <title> site uns</title>
+   <meta charset="Utf-8"/>	
+   <meta name="viewport" content="width=device-width,initial-scale=1.0">
+   <link rel="stylesheet" href="style2.css"/> 
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.min.css">
+</head>
+<body>
+    <div class="background"></div>
+    <header>
+       <div class="logo"></div>
+       <nav>
+        <ul>
+            <li><a href="accueil.html">Accueil</a></li>
+            <li><a href="about.html">À propos</a></li>
+            <li><a href="services.html">services</a></li>
+            <li><a href="formulaire.php" class="btn-inscrire">S'inscrire</a></li>
+            <li>
+                <a href="#contact" style="position:relative;">
+                    <i class="ti ti-shopping-cart"></i>
+                    <span id="panierCompteur"
+                     style="position:absolute;
+                      top:-8px;
+                      right:-12px;
+                      background:#c9a84c;
+                      color:#0f0f0f;
+                      border-radius:50%;
+                      width:18px;
+                      height:18px;
+                      font-size:11px;
+                      display:flex;
+                      align-items:center;
+                      justify-content:center;
+                      font-weight:700;">
+                      0</span>
+                </a>
+            </li>
+        </ul>
+        
+    </nav>
+    </header>
+    <section id="accueil">
+        <h1>Bienvenue sur Mon site Web</h1>
+        <p>AutoLux — votre spécialiste en vente de véhicules neufs et d'occasion à Abidjan</p>
+        <a href="#contact" class="btn">Contactez-nous</a>
+    </section>
+    <section id="services">
+        <h2>Nos Services</h2>
+        <div class="service">
+            <h3>berlines</h3>
+            <p>Confort et élégance pour vos déplacements quotidiens.</p>
+        </div>
+            <div class="produits">
+                <div class="produit">
+                    <img src="produit1.jpg" alt="Toyota Camry 2022" onerror="this.onerror=null;this.src='https://placehold.co/400x250/0f0f0f/c9a84c?text=Toyota+Camry+2022';">
+                    <p>Toyota camry 2022</p>
+                    <p class="prix">12 500 000 FCFA</p>
+                    <button onclick="ajouterAuPanier('Toyota Camry 2022', 12500000)">Ajouter au panier</button>
+                </div>
+            </div>  
+        </div>
+        
+        <div class="service">
+            <h3>SUIV & 4X4</h3>
+            <p>Puissance et polyvalence pour tous les terrains.</p>
+        </div>
+        <div class="produit">
+            <img src="produit2.jpg" alt="Toyota Land Cruiser" onerror="this.onerror=null;this.src='https://placehold.co/400x250/0f0f0f/c9a84c?text=Land+Cruiser+2021';">
+            <p>Toyota Land Cruiser 2021</p>
+            <p class="prix">28 000 000 FCFA</p>
+            <button onclick="ajouterAuPanier('Toyota Land Cruiser 2021', 28000000)">Ajouter au panier</button>
+        </div>
+        </div>
+        
+        <div class="service">
+            <h3>Utilitaires</h3>
+            <p>Idéal pour les professionnels et les transports de marchandises.</p>
+        </div>
+        <div class="produit">
+            <img src="produit3.jpg" alt="Toyota Hilux" onerror="this.onerror=null;this.src='https://placehold.co/400x250/0f0f0f/c9a84c?text=Toyota+Hilux+2023';">
+            <p>Toyota Hilux 2023</p>
+            <p class="prix">18 500 000</p>
+            <button onclick="ajouterAuPanier('Toyota Hilux 2023', 18500000)"> Ajouter au panier</button>
+        </div>
+    </section>
+    
+    <section id="contact">
+        <h2>Contactez-nous</h2>
+         <p>Notre équipe est disponible du lundi au samedi, de 8h à 18h.</p>
+        <form action="https://formspree.io/f/xbdeoypd" method="post">
+            <label for="nom">Nom</label>
+            <input type="text" id="nom" name="nom" required>
+            
+            <label for="Prenom">Prenom</label>
+            <input type="text" id="prenom" name="prenom" required>
+            
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="telephone">Téléphone</label>
+            <input type="tel" id="telephoneContact" name="telephone_affiche">
+            <input type="hidden" id="telephoneContactFull" name="telephone">
+            
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+            
+            <button type="submit">Envoyer</button>
+        </form>
+        <script>
+    let panier = [];
+
+    function ajouterAuPanier(nom, prix) {
+        panier.push({ nom: nom, prix: prix });
+        afficherPanier();
+    }
+
+    function afficherPanier() {
+        let total = 0;
+        let liste = '';
+
+        panier.forEach(function(article) {
+            total += article.prix;
+            liste += '- ' + article.nom + ' : ' + article.prix.toLocaleString('fr-FR') + ' FCFA\n';
+        });
+
+        // Mise à jour de l'icône panier
+        const compteur = document.getElementById('panierCompteur');
+        if (compteur) compteur.textContent = panier.length;
+
+        alert('🛒 Panier :\n' + liste + '\nTotal : ' + total.toLocaleString('fr-FR') + ' FCFA');
+    }
+
+    // Sélecteur de pays / indicatif pour le téléphone (contact)
+    document.addEventListener('DOMContentLoaded', function () {
+        const phoneInput = document.querySelector("#telephoneContact");
+        if (phoneInput && window.intlTelInput) {
+            const iti = window.intlTelInput(phoneInput, {
+                initialCountry: "ci",
+                preferredCountries: ["ci", "fr", "sn", "ml", "bf", "us"],
+                separateDialCode: true,
+                utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js"
+            });
+            phoneInput.closest('form').addEventListener('submit', function () {
+                document.getElementById('telephoneContactFull').value = iti.getNumber();
+            });
+        }
+    });
+</script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+    </section>
+    <footer>
+    <p>📍 Abidjan, Côte d'Ivoire &nbsp;|&nbsp; 📞 +225 00 00 00 00 00</p>
+    <p>&copy; 2025 AutoLux — Tous droits réservés.</p>
+    <div class="social-links">
+       <a href="https://www.instagram.com" target="_blank">
+    <i class="ti ti-brand-instagram"></i>
+</a>
+<a href="https://www.facebook.com" target="_blank">
+    <i class="ti ti-brand-facebook"></i>
+</a>
+    </div>
+</footer>
+        
+
+</body>
+</html>

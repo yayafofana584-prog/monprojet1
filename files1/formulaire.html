@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoLux — Inscription / Connexion</title>
+    <link rel="stylesheet" href="stylebtn.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.min.css">
+    <style>
+        .iti { width: 100%; }
+        .iti input { width: 100% !important; }
+        .iti__flag-container { cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="page-wrapper">
+        <div class="brand">
+            <div class="logo">AutoLux</div>
+            <p class="tagline">Votre spécialiste en véhicules premium à Abidjan</p>
+        </div>
+
+        <div class="form-box">
+            <div class="toggle-buttons">
+                <button id="showSignup" class="active">Inscription</button>
+                <button id="showLogin">Connexion</button>
+            </div>
+
+            <!-- Formulaire d'inscription -->
+          
+            <form id="signupForm" action="inscription.php" method="POST">
+                <div class="input-group">
+                    <label>Nom</label>
+                    <input type="text" name="nom" placeholder="Votre nom" required>
+                </div>
+                <div class="input-group">
+                    <label>Prénom</label>
+                    <input type="text" name="prenom" placeholder="Votre prénom" required>
+                </div>
+                <div class="input-group">
+                    <label>Email</label>
+                    <input type="email" name="email" placeholder="votre@email.com" required>
+                </div>
+                <div class="input-group">
+                    <label>Mot de passe</label>
+                    <input type="password" name="mot_de_passe" placeholder="••••••••" required>
+                </div>
+                <div class="input-group">
+                    <label>Confirmer le mot de passe</label>
+                    <input type="password" name="confirmation" placeholder="••••••••" required>
+                </div>
+                <div class="input-group">
+                    <label>Genre</label>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="genre" value="homme" required>
+                            <span>Homme</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="genre" value="femme">
+                            <span>Femme</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label>Téléphone</label>
+                    <input type="tel" id="phoneSignup" name="telephone" placeholder="01 02 03 04 05" required>
+                    <input type="hidden" name="telephone_complet" id="phoneSignupFull">
+                </div>
+                <button type="submit" class="btn">S'inscrire</button>
+                <p class="form-note">Déjà un compte ? <a href="#" id="switchToLogin">Se connecter</a></p>
+            </form>
+
+            <!-- Formulaire de connexion -->
+             
+            <form id="loginForm" class="hidden">
+                <div class="input-group">
+                    <label>Email</label>
+                    <input type="email" placeholder="votre@email.com" required>
+                </div>
+                <div class="input-group">
+                    <label>Mot de passe</label>
+                    <input type="password" placeholder="••••••••" required>
+                </div>
+                <a href="#" class="forgot">Mot de passe oublié ?</a>
+                <button type="submit" class="btn">Se connecter</button>
+                <p class="form-note">Pas encore de compte ? <a href="#" id="switchToSignup">S'inscrire</a></p>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+    <script>
+        const phoneInput = document.querySelector("#phoneSignup");
+        const iti = window.intlTelInput(phoneInput, {
+            initialCountry: "ci",
+            preferredCountries: ["ci", "fr", "sn", "ml", "bf", "us"],
+            separateDialCode: true,
+            utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js"
+        });
+
+        document.getElementById('signupForm').addEventListener('submit', function () {
+            document.getElementById('phoneSignupFull').value = iti.getNumber();
+        });
+    </script>
+
+    <script>
+        document.getElementById('showSignup').addEventListener('click', function () {
+            document.getElementById('signupForm').classList.remove('hidden');
+            document.getElementById('loginForm').classList.add('hidden');
+            this.classList.add('active');
+            document.getElementById('showLogin').classList.remove('active');
+        });
+
+        document.getElementById('showLogin').addEventListener('click', function () {
+            document.getElementById('signupForm').classList.add('hidden');
+            document.getElementById('loginForm').classList.remove('hidden');
+            this.classList.add('active');
+            document.getElementById('showSignup').classList.remove('active');
+        });
+
+        document.getElementById('switchToLogin').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('showLogin').click();
+        });
+
+        document.getElementById('switchToSignup').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('showSignup').click();
+        });
+    </script>
+
+</body>
+</html>

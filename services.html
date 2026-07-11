@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>AutoLux — Services</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body { font-family: 'DM Sans', sans-serif; background: #0f0f0f; color: #fff; }
+
+        header {
+            position: sticky; top: 0; z-index: 100;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0 48px; height: 70px;
+            background: rgba(15,15,15,0.97);
+            border-bottom: 1px solid rgba(201,168,76,0.2);
+        }
+
+        .logo 
+        { font-family: 'Playfair Display', serif; font-size: 26px; color: #c9a84c; letter-spacing: 3px; text-decoration: none; font-weight: 700; }
+        nav ul { list-style: none; display: flex; gap: 32px; }
+        nav ul li a { text-decoration: none; color: rgba(255,255,255,0.7); font-size: 14px; transition: color 0.2s; }
+        nav ul li a:hover { color: #c9a84c; }
+        .btn-nav { background: #c9a84c !important; color: #0f0f0f !important; padding: 9px 22px; border-radius: 4px; font-weight: 500 !important; }
+
+        .page-hero {
+            padding: 100px 48px 60px;
+            text-align: center;
+            border-bottom: 1px solid rgba(201,168,76,0.1);
+        }
+
+        .page-hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(36px, 5vw, 58px); margin-bottom: 16px; }
+        .page-hero h1 span { color: #c9a84c; }
+        .page-hero p { color: rgba(255,255,255,0.45); font-size: 16px; }
+
+        /* ── SERVICES ── */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            padding: 80px 48px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(201,168,76,0.15);
+            border-radius: 10px;
+            padding: 36px 28px;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(201,168,76,0.4);
+        }
+
+        .service-icon { font-size: 36px; margin-bottom: 20px; }
+
+        .service-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            margin-bottom: 12px;
+            color: #c9a84c;
+        }
+
+        .service-card p {
+            font-size: 14px;
+            color: rgba(255,255,255,0.55);
+            line-height: 1.7;
+            margin-bottom: 24px;
+        }
+
+        .service-card a {
+            color: #c9a84c;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            border-bottom: 1px solid rgba(201,168,76,0.3);
+            padding-bottom: 2px;
+            transition: border-color 0.2s;
+        }
+
+        .service-card a:hover { border-color: #c9a84c; }
+
+        /* ── PROCESSUS ── */
+        .processus {
+            padding: 80px 48px;
+            background: rgba(201,168,76,0.03);
+            border-top: 1px solid rgba(201,168,76,0.1);
+            text-align: center;
+        }
+
+        .processus h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            margin-bottom: 48px;
+        }
+
+        .etapes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 32px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .etape { text-align: center; }
+
+        .etape-num {
+            width: 52px; height: 52px;
+            border-radius: 50%;
+            border: 2px solid #c9a84c;
+            color: #c9a84c;
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+        }
+
+        .etape h4 { font-size: 15px; font-weight: 500; margin-bottom: 8px; }
+        .etape p { font-size: 13px; color: rgba(255,255,255,0.4); line-height: 1.6; }
+
+        footer {
+            background: #080808;
+            text-align: center;
+            padding: 32px;
+            font-size: 13px;
+            color: rgba(255,255,255,0.25);
+            border-top: 1px solid rgba(201,168,76,0.1);
+        }
+
+        @media (max-width: 768px) {
+            header, .page-hero, .services-grid, .processus { padding-left: 20px; padding-right: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="accueil.html" class="logo">AutoLux</a>
+        <nav>
+            <ul>
+                <li><a href="accueil.html">Accueil</a></li>
+                <li><a href="about.html">À propos</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="Projet1.html">Voir les voitures</a></li>
+                <li><a href="formulaire.php" class="btn-nav">S'inscrire</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="page-hero">
+        <h1>Nos <span>Services</span></h1>
+        <p>Tout ce dont vous avez besoin pour votre prochain véhicule</p>
+    </section>
+
+    <div class="services-grid">
+        <div class="service-card">
+            <div class="service-icon">🚗</div>
+            <h3>Vente de véhicules</h3>
+            <p>Large sélection de véhicules neufs et d'occasion — berlines, SUV, utilitaires. Tous vérifiés et garantis.</p>
+            <a href="Projet1.html">Voir le catalogue →</a>
+        </div>
+        <div class="service-card">
+            <div class="service-icon">🔑</div>
+            <h3>Location courte durée</h3>
+            <p>Besoin d'un véhicule pour quelques jours ? Nos tarifs sont parmi les plus compétitifs d'Abidjan.</p>
+            <a href="formulaire.php">Réserver →</a>
+        </div>
+        <div class="service-card">
+            <div class="service-icon">📅</div>
+            <h3>Location longue durée</h3>
+            <p>Contrats flexibles sur plusieurs mois. Idéal pour les entreprises et les expatriés.</p>
+            <a href="formulaire.php">Nous contacter →</a>
+        </div>
+        <div class="service-card">
+            <div class="service-icon">🔧</div>
+            <h3>Entretien & inspection</h3>
+            <p>Chaque véhicule passe une inspection complète avant livraison. Carnet d'entretien fourni.</p>
+            <a href="about.html">En savoir plus →</a>
+        </div>
+        <div class="service-card">
+            <div class="service-icon">🏦</div>
+            <h3>Financement auto</h3>
+            <p>Achetez maintenant et payez en plusieurs fois. Simulation de crédit disponible sur demande.</p>
+            <a href="formulaire.php">Simuler →</a>
+        </div>
+        <div class="service-card">
+            <div class="service-icon">🚚</div>
+            <h3>Livraison à domicile</h3>
+            <p>Votre véhicule livré directement chez vous à Abidjan. Service disponible 7j/7.</p>
+            <a href="formulaire.php">Commander →</a>
+        </div>
+    </div>
+
+    <section class="processus">
+        <h2>Comment ça marche ?</h2>
+        <div class="etapes">
+            <div class="etape">
+                <div class="etape-num">1</div>
+                <h4>Choisissez</h4>
+                <p>Parcourez notre catalogue et sélectionnez votre véhicule</p>
+            </div>
+            <div class="etape">
+                <div class="etape-num">2</div>
+                <h4>Contactez-nous</h4>
+                <p>Par téléphone, WhatsApp ou via le formulaire en ligne</p>
+            </div>
+            <div class="etape">
+                <div class="etape-num">3</div>
+                <h4>Essai gratuit</h4>
+                <p>Prenez rendez-vous pour un essai du véhicule choisi</p>
+            </div>
+            <div class="etape">
+                <div class="etape-num">4</div>
+                <h4>Finalisez</h4>
+                <p>Signez le contrat et recevez votre véhicule</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>📍 Abidjan, Côte d'Ivoire &nbsp;|&nbsp; 📞 +225 00 00 00 00 00</p>
+        <p style="margin-top:8px">&copy; 2025 AutoLux — Tous droits réservés.</p>
+    </footer>
+
+</body>
+</html>

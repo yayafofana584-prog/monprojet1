@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>AutoLux — À propos</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: #0f0f0f;
+            color: #fff;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 48px;
+            height: 70px;
+            background: rgba(15,15,15,0.97);
+            border-bottom: 1px solid rgba(201,168,76,0.2);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            color: #c9a84c;
+            letter-spacing: 3px;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        nav ul { list-style: none; display: flex; gap: 32px; }
+        nav ul li a { text-decoration: none; color: rgba(255,255,255,0.7); font-size: 14px; transition: color 0.2s; }
+        nav ul li a:hover { color: #c9a84c; }
+        .btn-nav { background: #c9a84c !important; color: #0f0f0f !important; padding: 9px 22px; border-radius: 4px; font-weight: 500 !important; }
+
+        /* ── HERO ── */
+        .page-hero {
+            padding: 100px 48px 60px;
+            text-align: center;
+            border-bottom: 1px solid rgba(201,168,76,0.1);
+        }
+
+        .page-hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(36px, 5vw, 58px);
+            margin-bottom: 16px;
+        }
+
+        .page-hero h1 span { color: #c9a84c; }
+
+        .page-hero p {
+            font-size: 16px;
+            color: rgba(255,255,255,0.45);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        /* ── CONTENU ── */
+        .about-content {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 80px 48px;
+        }
+
+        .about-intro {
+            font-size: 18px;
+            color: rgba(255,255,255,0.75);
+            line-height: 1.8;
+            margin-bottom: 60px;
+            font-weight: 300;
+        }
+
+        .mission-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            margin-bottom: 16px;
+            color: #c9a84c;
+        }
+
+        .mission-text {
+            font-size: 16px;
+            color: rgba(255,255,255,0.65);
+            line-height: 1.8;
+            margin-bottom: 48px;
+        }
+
+        .avantages {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 24px;
+            margin-top: 48px;
+        }
+
+        .avantage {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(201,168,76,0.15);
+            border-radius: 8px;
+            padding: 28px 24px;
+        }
+
+        .avantage-icon { font-size: 28px; margin-bottom: 14px; }
+
+        .avantage h3 {
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: #c9a84c;
+        }
+
+        .avantage p {
+            font-size: 14px;
+            color: rgba(255,255,255,0.5);
+            line-height: 1.6;
+        }
+
+        /* ── CTA ── */
+        .cta {
+            text-align: center;
+            padding: 80px 48px;
+            background: rgba(201,168,76,0.04);
+            border-top: 1px solid rgba(201,168,76,0.1);
+        }
+
+        .cta h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            margin-bottom: 16px;
+        }
+
+        .cta p {
+            color: rgba(255,255,255,0.5);
+            margin-bottom: 32px;
+            font-size: 16px;
+        }
+
+        .btn-primary {
+            background: #c9a84c;
+            color: #0f0f0f;
+            text-decoration: none;
+            padding: 14px 36px;
+            border-radius: 4px;
+            font-weight: 500;
+            font-size: 15px;
+            transition: background 0.2s;
+        }
+
+        .btn-primary:hover { background: #e8d49a; }
+
+        footer {
+            background: #080808;
+            text-align: center;
+            padding: 32px;
+            font-size: 13px;
+            color: rgba(255,255,255,0.25);
+            border-top: 1px solid rgba(201,168,76,0.1);
+        }
+
+        @media (max-width: 768px) {
+            header, .page-hero, .about-content, .cta { padding-left: 20px; padding-right: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="accueil.html" class="logo">AutoLux</a>
+        <nav>
+            <ul>
+                <li><a href="accueil.html">Accueil</a></li>
+                <li><a href="about.html">À propos</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="Projet1.html">Voir les voitures</a></li>
+                <li><a href="formulaire.php" class="btn-nav">S'inscrire</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="page-hero">
+        <h1>À propos d'<span>AutoLux</span></h1>
+        <p>Votre partenaire de confiance pour la location et la vente de véhicules à Abidjan</p>
+    </section>
+
+    <div class="about-content">
+        <p class="about-intro">
+            Chez AutoLux, nous nous engageons à vous offrir une expérience unique en matière de location et de vente de véhicules. Que vous soyez à la recherche d'une voiture pour vos déplacements quotidiens, un voyage spécial ou un besoin à long terme, nous avons la solution idéale pour vous.
+        </p>
+
+        <div class="mission-title">Notre mission</div>
+        <p class="mission-text">
+            Mettre à votre disposition une large gamme de voitures, allant des modèles économiques aux véhicules de luxe, tout en garantissant qualité, fiabilité et prix compétitifs. Chaque véhicule est soigneusement entretenu pour offrir une expérience de conduite sans souci.
+        </p>
+
+        <div class="avantages">
+            <div class="avantage">
+                <div class="avantage-icon">🔄</div>
+                <h3>Flexibilité</h3>
+                <p>Location à court ou long terme, vente de voitures neuves ou d'occasion selon vos besoins.</p>
+            </div>
+            <div class="avantage">
+                <div class="avantage-icon">🤝</div>
+                <h3>Service personnalisé</h3>
+                <p>Notre équipe vous conseille et vous aide à choisir le véhicule qui correspond à vos besoins.</p>
+            </div>
+            <div class="avantage">
+                <div class="avantage-icon">✅</div>
+                <h3>Satisfaction garantie</h3>
+                <p>Un service rapide, sécurisé et transparent. Votre satisfaction est notre priorité.</p>
+            </div>
+            <div class="avantage">
+                <div class="avantage-icon">🛡️</div>
+                <h3>Véhicules vérifiés</h3>
+                <p>Chaque voiture est inspectée et entretenue avant d'être proposée à la vente ou à la location.</p>
+            </div>
+        </div>
+    </div>
+
+    <section class="cta">
+        <h2>Votre prochaine voiture vous attend</h2>
+        <p>Découvrez notre catalogue de véhicules disponibles dès aujourd'hui</p>
+        <a href="services.html" class="btn-primary">Voir nos véhicules</a>
+    </section>
+
+    <footer>
+        <p>📍 Abidjan, Côte d'Ivoire &nbsp;|&nbsp; 📞 +225 00 00 00 00 00</p>
+        <p style="margin-top:8px">&copy; 2025 AutoLux — Tous droits réservés.</p>
+    </footer>
+
+</body>
+</html>

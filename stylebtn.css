@@ -1,0 +1,230 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap');
+
+:root {
+    --noir: #0f0f0f;
+    --blanc: #f8f6f1;
+    --or: #c9a84c;
+    --or-clair: #e8d49a;
+    --gris: #6b6b6b;
+    --gris-clair: #e8e6e0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    background-color: var(--noir);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    background-image:
+        radial-gradient(ellipse at 20% 50%, rgba(201, 168, 76, 0.06) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 20%, rgba(201, 168, 76, 0.04) 0%, transparent 50%);
+}
+
+.page-wrapper {
+    width: 100%;
+    max-width: 440px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+}
+
+
+.brand {
+    text-align: center;
+}
+
+.logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--or);
+    letter-spacing: 4px;
+    margin-bottom: 6px;
+}
+
+.tagline {
+    font-size: 13px;
+    color: rgba(255,255,255,0.35);
+    font-weight: 300;
+    letter-spacing: 0.3px;
+}
+
+
+.form-box {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(201, 168, 76, 0.2);
+    border-radius: 12px;
+    padding: 36px 32px;
+}
+
+
+.toggle-buttons {
+    display: flex;
+    gap: 0;
+    margin-bottom: 32px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.toggle-buttons button {
+    flex: 1;
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.4);
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 12px 0;
+    font-family: 'DM Sans', sans-serif;
+    transition: color 0.2s;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+}
+
+.toggle-buttons button.active {
+    color: var(--or);
+    border-bottom: 2px solid var(--or);
+}
+
+.toggle-buttons button:hover {
+    color: var(--or-clair);
+}
+
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 16px;
+}
+
+.input-group label {
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(201, 168, 76, 0.8);
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="tel"] {
+    width: 100%;
+    padding: 11px 14px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 6px;
+    color: white;
+    font-size: 14px;
+    font-family: 'DM Sans', sans-serif;
+    transition: border-color 0.2s, background 0.2s;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="tel"]:focus {
+    outline: none;
+    border-color: var(--or);
+    background: rgba(201, 168, 76, 0.05);
+}
+
+input::placeholder {
+    color: rgba(255,255,255,0.2);
+}
+
+
+.radio-group {
+    display: flex;
+    gap: 20px;
+}
+
+.radio-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    color: rgba(255,255,255,0.7);
+    font-size: 14px;
+}
+
+.radio-label input[type="radio"] {
+    width: 16px;
+    height: 16px;
+    accent-color: var(--or);
+    cursor: pointer;
+}
+
+.btn {
+    width: 100%;
+    padding: 13px;
+    background: var(--or);
+    color: var(--noir);
+    border: none;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    letter-spacing: 0.5px;
+    transition: background 0.2s, transform 0.15s;
+    margin-top: 8px;
+}
+
+.btn:hover {
+    background: var(--or-clair);
+    transform: translateY(-1px);
+}
+
+.forgot {
+    display: block;
+    text-align: right;
+    font-size: 12px;
+    color: rgba(201, 168, 76, 0.6);
+    text-decoration: none;
+    margin-bottom: 4px;
+    transition: color 0.2s;
+}
+
+.forgot:hover {
+    color: var(--or);
+}
+
+.form-note {
+    text-align: center;
+    font-size: 13px;
+    color: rgba(255,255,255,0.3);
+    margin-top: 16px;
+}
+
+.form-note a {
+    color: var(--or);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.form-note a:hover {
+    color: var(--or-clair);
+}
+
+
+.hidden {
+    display: none;
+}
+
+
+@media (max-width: 480px) {
+    .form-box {
+        padding: 28px 20px;
+    }
+}
