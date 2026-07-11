@@ -1,0 +1,10 @@
+# Fichiers sensibles / config locale
+connexion_bdd.php
+
+# Fichiers système Windows
+Thumbs.db
+desktop.ini
+
+# Dossiers temporaires
+/tmp/
+*.log

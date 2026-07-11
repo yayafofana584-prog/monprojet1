@@ -1,12 +1,15 @@
 <?php
 // =============================================
-// connexion_bdd.php — Connexion à MySQL
+// connexion_bdd.example.php — Modèle de configuration
+// Copiez ce fichier en "connexion_bdd.php" et remplissez
+// vos propres identifiants. Ce fichier exemple, lui,
+// peut être publié sans risque sur GitHub.
 // =============================================
 
-$hote       = "localhost";
+$hote        = "localhost";
 $utilisateur = "root";
-$mot_passe  = "";          // Vide par défaut sur WAMP
-$base       = "autolux";   // Nom de votre base de données
+$mot_passe   = "";
+$base        = "autolux";
 
 $conn = new mysqli($hote, $utilisateur, $mot_passe, $base);
 
