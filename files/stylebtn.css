@@ -1,12 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;700&display=swap');
 
 :root {
-    --noir: #0f0f0f;
-    --blanc: #f8f6f1;
-    --or: #c9a84c;
-    --or-clair: #e8d49a;
-    --gris: #6b6b6b;
-    --gris-clair: #e8e6e0;
+    --noir: #111111;
+    --noir-2: #1a1a1a;
+    --blanc: #f8f5f0;
+    --blanc-2: #efeae1;
+    --or: #c9a45b;
+    --or-clair: #e6d2a3;
+    --or-fonce: #a67b2d;
+    --gris: #7c7c7c;
+    --gris-clair: #d9d5cf;
+    --bordure: rgba(201, 164, 91, 0.22);
+    --fond: rgba(255, 255, 255, 0.04);
+    --shadow: 0 22px 50px rgba(0, 0, 0, 0.18);
 }
 
 * {
@@ -15,103 +21,124 @@
     box-sizing: border-box;
 }
 
+html, body {
+    height: 100%;
+}
+
 body {
     font-family: 'DM Sans', sans-serif;
-    background-color: var(--noir);
+    background:
+        radial-gradient(circle at top left, rgba(201, 164, 91, 0.12), transparent 25%),
+        radial-gradient(circle at bottom right, rgba(201, 164, 91, 0.08), transparent 30%),
+        linear-gradient(135deg, #0f0f0f 0%, #181818 45%, #121212 100%);
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 40px 20px;
-    background-image:
-        radial-gradient(ellipse at 20% 50%, rgba(201, 168, 76, 0.06) 0%, transparent 60%),
-        radial-gradient(ellipse at 80% 20%, rgba(201, 168, 76, 0.04) 0%, transparent 50%);
+    color: var(--blanc);
 }
 
 .page-wrapper {
     width: 100%;
-    max-width: 440px;
+    max-width: 470px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 32px;
+    gap: 24px;
 }
-
 
 .brand {
     text-align: center;
+    padding-top: 8px;
 }
 
 .logo {
     font-family: 'Playfair Display', serif;
-    font-size: 36px;
+    font-size: clamp(2.3rem, 3vw, 3.1rem);
     font-weight: 700;
+    letter-spacing: 0.08em;
     color: var(--or);
-    letter-spacing: 4px;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
+    text-transform: none;
 }
 
 .tagline {
-    font-size: 13px;
-    color: rgba(255,255,255,0.35);
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.55);
     font-weight: 300;
-    letter-spacing: 0.3px;
+    letter-spacing: 0.4px;
+    line-height: 1.7;
+    max-width: 360px;
 }
-
 
 .form-box {
     width: 100%;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(201, 168, 76, 0.2);
-    border-radius: 12px;
-    padding: 36px 32px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0.02));
+    border: 1px solid var(--bordure);
+    border-radius: 18px;
+    padding: 28px 28px 26px;
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
 }
 
-
 .toggle-buttons {
-    display: flex;
-    gap: 0;
-    margin-bottom: 32px;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 24px;
+    padding: 7px;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255,255,255,0.06);
 }
 
 .toggle-buttons button {
     flex: 1;
-    background: none;
+    background: transparent;
     border: none;
-    color: rgba(255,255,255,0.4);
-    font-size: 15px;
+    color: rgba(255,255,255,0.55);
+    font-size: 0.96rem;
     font-weight: 500;
     cursor: pointer;
-    padding: 12px 0;
+    padding: 12px 10px;
+    border-radius: 10px;
+    transition: all 0.25s ease;
     font-family: 'DM Sans', sans-serif;
-    transition: color 0.2s;
-    border-bottom: 2px solid transparent;
-    margin-bottom: -1px;
 }
 
 .toggle-buttons button.active {
-    color: var(--or);
-    border-bottom: 2px solid var(--or);
+    background: linear-gradient(135deg, var(--or), var(--or-fonce));
+    color: var(--noir);
+    font-weight: 700;
+    box-shadow: 0 12px 22px rgba(201, 164, 91, 0.22);
 }
 
 .toggle-buttons button:hover {
     color: var(--or-clair);
 }
 
+.toggle-buttons button.active:hover {
+    color: var(--noir);
+}
+
+form {
+    display: grid;
+    gap: 18px;
+}
 
 .input-group {
     display: flex;
     flex-direction: column;
-    gap: 6px;
-    margin-bottom: 16px;
+    gap: 8px;
 }
 
 .input-group label {
-    font-size: 12px;
-    font-weight: 500;
-    color: rgba(201, 168, 76, 0.8);
-    letter-spacing: 0.8px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: rgba(201, 164, 91, 0.9);
+    letter-spacing: 0.12em;
     text-transform: uppercase;
 }
 
@@ -120,111 +147,153 @@ input[type="email"],
 input[type="password"],
 input[type="tel"] {
     width: 100%;
-    padding: 11px 14px;
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 6px;
-    color: white;
-    font-size: 14px;
+    padding: 13px 14px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 10px;
+    color: var(--blanc);
+    font-size: 0.96rem;
     font-family: 'DM Sans', sans-serif;
-    transition: border-color 0.2s, background 0.2s;
+    transition: all 0.2s ease;
+    outline: none;
 }
 
 input[type="text"]:focus,
 input[type="email"]:focus,
 input[type="password"]:focus,
 input[type="tel"]:focus {
-    outline: none;
-    border-color: var(--or);
-    background: rgba(201, 168, 76, 0.05);
+    border-color: rgba(201, 164, 91, 0.7);
+    background: rgba(201, 164, 91, 0.04);
+    box-shadow: 0 0 0 4px rgba(201, 164, 91, 0.12);
 }
 
 input::placeholder {
-    color: rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.28);
 }
-
 
 .radio-group {
     display: flex;
-    gap: 20px;
+    gap: 18px;
+    flex-wrap: wrap;
+    margin-top: 3px;
 }
 
 .radio-label {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     gap: 8px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.06);
+    color: rgba(255,255,255,0.8);
+    font-size: 0.92rem;
     cursor: pointer;
-    color: rgba(255,255,255,0.7);
-    font-size: 14px;
+    transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.radio-label:hover {
+    border-color: rgba(201, 164, 91, 0.4);
+    background: rgba(201, 164, 91, 0.04);
 }
 
 .radio-label input[type="radio"] {
-    width: 16px;
-    height: 16px;
+    width: 15px;
+    height: 15px;
     accent-color: var(--or);
     cursor: pointer;
 }
 
 .btn {
     width: 100%;
-    padding: 13px;
-    background: var(--or);
+    padding: 14px 18px;
+    background: linear-gradient(135deg, var(--or), var(--or-fonce));
     color: var(--noir);
     border: none;
-    border-radius: 6px;
-    font-size: 15px;
-    font-weight: 500;
+    border-radius: 10px;
+    font-size: 0.98rem;
+    font-weight: 700;
     cursor: pointer;
     font-family: 'DM Sans', sans-serif;
-    letter-spacing: 0.5px;
-    transition: background 0.2s, transform 0.15s;
-    margin-top: 8px;
+    letter-spacing: 0.04em;
+    transition: transform 0.15s ease, box-shadow 0.2s ease, filter 0.2s ease;
+    box-shadow: 0 16px 26px rgba(201, 164, 91, 0.2);
+    margin-top: 6px;
 }
 
 .btn:hover {
-    background: var(--or-clair);
     transform: translateY(-1px);
+    filter: brightness(1.04);
+    box-shadow: 0 18px 30px rgba(201, 164, 91, 0.25);
+}
+
+.btn:active {
+    transform: translateY(0);
 }
 
 .forgot {
-    display: block;
-    text-align: right;
-    font-size: 12px;
-    color: rgba(201, 168, 76, 0.6);
+    display: inline-block;
+    width: fit-content;
+    margin-top: -2px;
+    font-size: 0.80rem;
+    color: rgba(230, 210, 163, 0.9);
     text-decoration: none;
-    margin-bottom: 4px;
-    transition: color 0.2s;
+    transition: color 0.2s ease;
 }
 
 .forgot:hover {
-    color: var(--or);
+    color: var(--or-clair);
 }
 
 .form-note {
     text-align: center;
-    font-size: 13px;
-    color: rgba(255,255,255,0.3);
-    margin-top: 16px;
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.45);
+    margin-top: 8px;
 }
 
 .form-note a {
     color: var(--or);
     text-decoration: none;
-    font-weight: 500;
+    font-weight: 600;
+    transition: color 0.2s ease;
 }
 
 .form-note a:hover {
     color: var(--or-clair);
 }
 
-
 .hidden {
-    display: none;
+    display: none !important;
 }
 
+.iti {
+    width: 100%;
+}
 
-@media (max-width: 480px) {
+.iti__flag-container {
+    z-index: 10;
+}
+
+.iti__selected-dialect {
+    color: var(--blanc);
+}
+
+@media (max-width: 520px) {
     .form-box {
-        padding: 28px 20px;
+        padding: 24px 18px 20px;
+    }
+
+    .brand {
+        margin-bottom: 2px;
+    }
+
+    .tagline {
+        font-size: 0.72rem;
+    }
+
+    .radio-group {
+        flex-direction: column;
+        gap: 12px;
     }
 }
