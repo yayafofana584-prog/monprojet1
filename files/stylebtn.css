@@ -268,17 +268,54 @@ input::placeholder {
 }
 
 .iti {
-    width: 100%;
+    width: 100% !important;
+    position: relative;
 }
 
-.iti__flag-container {
-    z-index: 10;
+.iti__selected-flag {
+    background: transparent !important;
+    border-right: 1px solid rgba(23, 23, 23, 0.12);
+    padding: 0 12px 0 10px;
+    height: 100% !important;
+    display: flex;
+    align-items: center;
+    min-width: 70px;
 }
 
-.iti__selected-dialect {
-    color: var(--blanc);
+.iti__arrow {
+    border-top: 5px solid #222 !important;
+    border-left: 4px solid transparent !important;
+    border-right: 4px solid transparent !important;
+    margin-left: 8px;
 }
 
+.iti__country-list {
+    width: 100% !important;
+    max-height: 240px;
+    overflow-y: auto;
+    background: #fff;
+    border: 1px solid rgba(23, 23, 23, 0.12);
+    border-radius: 12px;
+    box-shadow: 0 18px 35px rgba(0,0,0,0.12);
+    z-index: 9999;
+}
+
+.iti__country {
+    padding: 10px 12px;
+    font-family: "DM Sans", sans-serif;
+}
+
+.iti__country:hover,
+.iti__country.iti__highlight {
+    background: rgba(200, 164, 106, 0.10);
+}
+const iti = window.intlTelInput(phoneInput, {
+    initialCountry: "ci",
+    preferredCountries: ["ci", "fr", "sn", "ml", "bf", "us"],
+    separateDialCode: true,
+    allowDropdown: true,
+    utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/23.1.1/js/utils.js"
+});
 @media (max-width: 520px) {
     .form-box {
         padding: 24px 18px 20px;
