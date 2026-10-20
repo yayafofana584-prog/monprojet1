@@ -4,131 +4,486 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AutoLux — Inscription / Connexion</title>
-    <link rel="stylesheet" href="stylebtn.css">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/23.1.1/css/intlTelInput.min.css">
+
     <style>
-        .iti { width: 100%; }
-        .iti input { width: 100% !important; }
+        :root {
+            --bg: #f5f1ea;
+            --panel: rgba(255, 255, 255, 0.8);
+            --panel-strong: #ffffff;
+            --primary: #171717;
+            --primary-soft: #2f2f2f;
+            --gold: #c8a46a;
+            --gold-soft: #e9d4a0;
+            --text: #1f1f1f;
+            --muted: #6b6b6b;
+            --border: rgba(23, 23, 23, 0.12);
+            --shadow: 0 20px 50px rgba(20, 20, 20, 0.12);
+            --success: #0f766e;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            min-height: 100%;
+            font-family: "DM Sans", sans-serif;
+            background:
+                radial-gradient(circle at top left, rgba(200, 164, 106, 0.18), transparent 30%),
+                linear-gradient(135deg, #f8f3ee 0%, #efe7dc 45%, #f4efe9 100%);
+            color: var(--text);
+        }
+
+        body {
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            padding: 28px;
+        }
+
+        a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .page-wrapper {
+            width: min(1100px, 100%);
+        }
+
+        .auth-shell {
+            display: grid;
+            grid-template-columns: 1.08fr 0.92fr;
+            background: rgba(255, 255, 255, 0.32);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 28px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .brand {
+            position: relative;
+            background:
+                linear-gradient(135deg, rgba(23, 23, 23, 0.9), rgba(47, 47, 47, 0.8)),
+                url("https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&q=80") center/cover no-repeat;
+            color: white;
+            padding: 52px 44px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 700px;
+        }
+
+        .brand::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(0,0,0,0.15), rgba(0,0,0,0.45));
+        }
+
+        .brand > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .brand-badge {
+            display: inline-flex;
+            align-items: center;
+            width: fit-content;
+            padding: 8px 14px;
+            border: 1px solid rgba(255,255,255,0.25);
+            border-radius: 999px;
+            background: rgba(255,255,255,0.08);
+            letter-spacing: 0.08em;
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .logo {
+            font-family: "Playfair Display", serif;
+            font-size: clamp(2.8rem, 3vw, 4rem);
+            font-weight: 700;
+            letter-spacing: -0.05em;
+            margin: 22px 0 12px;
+        }
+
+        .tagline {
+            max-width: 420px;
+            font-size: 1.12rem;
+            line-height: 1.7;
+            color: rgba(255,255,255,0.85);
+            margin: 0 0 30px;
+        }
+
+        .brand-list {
+            display: grid;
+            gap: 16px;
+            margin-top: 18px;
+            max-width: 410px;
+        }
+
+        .brand-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: rgba(255,255,255,0.9);
+            font-size: 0.95rem;
+        }
+
+        .brand-item .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: linear-gradient(180deg, var(--gold-soft), var(--gold));
+            box-shadow: 0 0 0 6px rgba(200, 164, 106, 0.18);
+        }
+
+        .form-panel {
+            background: var(--panel-strong);
+            padding: 42px 34px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .toggle-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            background: #f4f1ec;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 7px;
+            margin-bottom: 28px;
+        }
+
+        .tab-btn {
+            border: none;
+            border-radius: 12px;
+            background: transparent;
+            color: var(--muted);
+            font-weight: 700;
+            font-size: 0.96rem;
+            padding: 14px 16px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(135deg, var(--primary), var(--primary-soft));
+            color: white;
+            box-shadow: 0 12px 24px rgba(23, 23, 23, 0.18);
+        }
+
+        form {
+            display: grid;
+            gap: 18px;
+        }
+
+        .input-group {
+            display: grid;
+            gap: 8px;
+        }
+
+        .input-group label {
+            font-weight: 600;
+            font-size: 0.92rem;
+            color: var(--text);
+        }
+
+        .input-group input[type="text"],
+        .input-group input[type="email"],
+        .input-group input[type="password"],
+        .input-group input[type="tel"] {
+            width: 100%;
+            border: 1px solid var(--border);
+            background: #f9f8f7;
+            border-radius: 14px;
+            padding: 15px 16px;
+            font-size: 1rem;
+            color: var(--text);
+            transition: 0.2s ease;
+            outline: none;
+        }
+
+        .input-group input:focus {
+            border-color: rgba(23, 23, 23, 0.3);
+            background: #fff;
+            box-shadow: 0 0 0 4px rgba(200, 164, 106, 0.18);
+        }
+
+        .radio-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 6px;
+        }
+
+        .radio-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border: 1px solid var(--border);
+            background: #f9f8f7;
+            border-radius: 12px;
+            padding: 12px 14px;
+            font-size: 0.96rem;
+            cursor: pointer;
+            transition: 0.2s ease;
+        }
+
+        .radio-label:hover {
+            border-color: rgba(23, 23, 23, 0.2);
+        }
+
+        .radio-label input {
+            accent-color: var(--primary);
+            width: 16px;
+            height: 16px;
+        }
+
+        .btn {
+            border: none;
+            background: linear-gradient(135deg, #1b1b1b 0%, #2a2a2a 100%);
+            color: white;
+            font-weight: 700;
+            font-size: 1rem;
+            padding: 16px 22px;
+            border-radius: 14px;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 16px 28px rgba(23, 23, 23, 0.18);
+        }
+
+        .btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 18px 30px rgba(23, 23, 23, 0.23);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .forgot {
+            font-size: 0.9rem;
+            color: var(--muted);
+            margin-top: -4px;
+        }
+
+        .form-note {
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.92rem;
+            margin-top: 8px;
+        }
+
+        .form-note a {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .iti {
+            width: 100%;
+        }
+
+        .iti__flag-container {
+            z-index: 10;
+        }
+
+        @media (max-width: 860px) {
+            .auth-shell {
+                grid-template-columns: 1fr;
+            }
+
+            .brand {
+                min-height: 260px;
+                padding: 32px 28px;
+            }
+
+            .form-panel {
+                padding: 28px 20px 32px;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .brand-list {
+                gap: 12px;
+            }
+
+            .radio-group {
+                flex-direction: column;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="page-wrapper">
-        <div class="brand">
-            <div class="logo">AutoLux</div>
-            <p class="tagline">Votre spécialiste en véhicules premium à Abidjan</p>
-        </div>
+        <div class="auth-shell">
+            <aside class="brand">
+                <div class="brand-badge">Luxury automotive</div>
 
-        <div class="form-box">
-            <div class="toggle-buttons">
-                <button id="showSignup" class="active">Inscription</button>
-                <button id="showLogin">Connexion</button>
-            </div>
+                <div class="logo">AutoLux</div>
 
-            <!-- Formulaire d'inscription -->
-          
-            <form id="signupForm" action="inscription.php" method="POST">
-                <div class="input-group">
-                    <label>Nom</label>
-                    <input type="text" name="nom" placeholder="Votre nom" required>
-                </div>
-                <div class="input-group">
-                    <label>Prénom</label>
-                    <input type="text" name="prenom" placeholder="Votre prénom" required>
-                </div>
-                <div class="input-group">
-                    <label>Email</label>
-                    <input type="email" name="email" placeholder="votre@email.com" required>
-                </div>
-                <div class="input-group">
-                    <label>Mot de passe</label>
-                    <input type="password" name="mot_de_passe" placeholder="••••••••" required>
-                </div>
-                <div class="input-group">
-                    <label>Confirmer le mot de passe</label>
-                    <input type="password" name="confirmation" placeholder="••••••••" required>
-                </div>
-                <div class="input-group">
-                    <label>Genre</label>
-                    <div class="radio-group">
-                        <label class="radio-label">
-                            <input type="radio" name="genre" value="homme" required>
-                            <span>Homme</span>
-                        </label>
-                        <label class="radio-label">
-                            <input type="radio" name="genre" value="femme">
-                            <span>Femme</span>
-                        </label>
+                <p class="tagline">
+                    Votre spécialiste en véhicules premium à Abidjan, avec une expérience de conduite raffinée et des offres exclusives.
+                </p>
+
+                <div class="brand-list">
+                    <div class="brand-item">
+                        <span class="dot"></span>
+                        <span>Véhicules premium et d’exception</span>
+                    </div>
+                    <div class="brand-item">
+                        <span class="dot"></span>
+                        <span>Service client haut de gamme</span>
+                    </div>
+                    <div class="brand-item">
+                        <span class="dot"></span>
+                        <span>Réservation rapide et sécurisée</span>
                     </div>
                 </div>
-                <div class="input-group">
-                    <label>Téléphone</label>
-                    <input type="tel" id="phoneSignup" name="telephone" placeholder="01 02 03 04 05" required>
-                    <input type="hidden" name="telephone_complet" id="phoneSignupFull">
-                </div>
-                <button type="submit" class="btn">S'inscrire</button>
-                <p class="form-note">Déjà un compte ? <a href="#" id="switchToLogin">Se connecter</a></p>
-            </form>
+            </aside>
 
-            <!-- Formulaire de connexion -->
-             
-            <form id="loginForm" class="hidden">
-                <div class="input-group">
-                    <label>Email</label>
-                    <input type="email" placeholder="votre@email.com" required>
+            <section class="form-panel">
+                <div class="toggle-buttons">
+                    <button id="showSignup" class="tab-btn active" type="button">Inscription</button>
+                    <button id="showLogin" class="tab-btn" type="button">Connexion</button>
                 </div>
-                <div class="input-group">
-                    <label>Mot de passe</label>
-                    <input type="password" placeholder="••••••••" required>
-                </div>
-                <a href="#" class="forgot">Mot de passe oublié ?</a>
-                <button type="submit" class="btn">Se connecter</button>
-                <p class="form-note">Pas encore de compte ? <a href="#" id="switchToSignup">S'inscrire</a></p>
-            </form>
+
+                <form id="signupForm" action="inscription.php" method="POST">
+                    <div class="input-group">
+                        <label for="nom">Nom</label>
+                        <input id="nom" type="text" name="nom" placeholder="Votre nom" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="prenom">Prénom</label>
+                        <input id="prenom" type="text" name="prenom" placeholder="Votre prénom" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="emailSignup">Email</label>
+                        <input id="emailSignup" type="email" name="email" placeholder="votre@email.com" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="mot_de_passe">Mot de passe</label>
+                        <input id="mot_de_passe" type="password" name="mot_de_passe" placeholder="••••••••" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="confirmation">Confirmer le mot de passe</label>
+                        <input id="confirmation" type="password" name="confirmation" placeholder="••••••••" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Genre</label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="genre" value="homme" required>
+                                <span>Homme</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="genre" value="femme">
+                                <span>Femme</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="phoneSignup">Téléphone</label>
+                        <input type="tel" id="phoneSignup" name="telephone" placeholder="01 02 03 04 05" required>
+                        <input type="hidden" name="telephone_complet" id="phoneSignupFull">
+                    </div>
+
+                    <button type="submit" class="btn">Créer mon compte</button>
+
+                    <p class="form-note">
+                        Déjà inscrit ? <a href="#" id="switchToLogin">Se connecter</a>
+                    </p>
+                </form>
+
+                <form id="loginForm" class="hidden" action="connexion.php" method="POST">
+                    <div class="input-group">
+                        <label for="emailLogin">Email</label>
+                        <input id="emailLogin" type="email" name="email" placeholder="votre@email.com" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="passwordLogin">Mot de passe</label>
+                        <input id="passwordLogin" type="password" name="mot_de_passe" placeholder="••••••••" required>
+                    </div>
+
+                    <a href="#" class="forgot">Mot de passe oublié ?</a>
+
+                    <button type="submit" class="btn">Se connecter</button>
+
+                    <p class="form-note">
+                        Pas encore de compte ? <a href="#" id="switchToSignup">S'inscrire</a>
+                    </p>
+                </form>
+            </section>
         </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/23.1.1/js/intlTelInput.min.js"></script>
     <script>
-        const phoneInput = document.querySelector("#phoneSignup");
+        const signupForm = document.getElementById("signupForm");
+        const loginForm = document.getElementById("loginForm");
+        const showSignup = document.getElementById("showSignup");
+        const showLogin = document.getElementById("showLogin");
+
+        function openSignup() {
+            signupForm.classList.remove("hidden");
+            loginForm.classList.add("hidden");
+            showSignup.classList.add("active");
+            showLogin.classList.remove("active");
+        }
+
+        function openLogin() {
+            signupForm.classList.add("hidden");
+            loginForm.classList.remove("hidden");
+            showLogin.classList.add("active");
+            showSignup.classList.remove("active");
+        }
+
+        showSignup.addEventListener("click", openSignup);
+        showLogin.addEventListener("click", openLogin);
+
+        document.getElementById("switchToLogin").addEventListener("click", function (e) {
+            e.preventDefault();
+            openLogin();
+        });
+
+        document.getElementById("switchToSignup").addEventListener("click", function (e) {
+            e.preventDefault();
+            openSignup();
+        });
+
+        const phoneInput = document.getElementById("phoneSignup");
         const iti = window.intlTelInput(phoneInput, {
             initialCountry: "ci",
             preferredCountries: ["ci", "fr", "sn", "ml", "bf", "us"],
             separateDialCode: true,
-            loadUtils: () => import("https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/23.1.1/js/utils.js")
+            utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/23.1.1/js/utils.js"
         });
 
-        document.getElementById('signupForm').addEventListener('submit', function () {
-            document.getElementById('phoneSignupFull').value = iti.getNumber();
-        });
-    </script>
-
-    <script>
-        document.getElementById('showSignup').addEventListener('click', function () {
-            document.getElementById('signupForm').classList.remove('hidden');
-            document.getElementById('loginForm').classList.add('hidden');
-            this.classList.add('active');
-            document.getElementById('showLogin').classList.remove('active');
-        });
-
-        document.getElementById('showLogin').addEventListener('click', function () {
-            document.getElementById('signupForm').classList.add('hidden');
-            document.getElementById('loginForm').classList.remove('hidden');
-            this.classList.add('active');
-            document.getElementById('showSignup').classList.remove('active');
-        });
-
-        document.getElementById('switchToLogin').addEventListener('click', function(e) {
-            e.preventDefault();
-            document.getElementById('showLogin').click();
-        });
-
-        document.getElementById('switchToSignup').addEventListener('click', function(e) {
-            e.preventDefault();
-            document.getElementById('showSignup').click();
+        signupForm.addEventListener("submit", function () {
+            const fullPhone = iti.getNumber();
+            document.getElementById("phoneSignupFull").value = fullPhone || "";
         });
     </script>
-
 </body>
 </html>
